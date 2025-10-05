@@ -33,6 +33,15 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+
+# ignore file for live project
+node_modules
+.next
+out
+.env
+.DS_Store
+
+
 # vercel
 .vercel
 

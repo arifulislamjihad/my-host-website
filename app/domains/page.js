@@ -1,8 +1,11 @@
 "use client";
+
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
-export default function DomainsPage() {
+// 🔹 Inner component (Suspense-এর ভিতরে চলবে)
+function DomainSearchContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
   const [domain, setDomain] = useState(query || "");
@@ -10,15 +13,18 @@ export default function DomainsPage() {
 
   useEffect(() => {
     if (domain) {
-      // Dummy search simulation
-      setTimeout(() => {
-        const available = Math.random() > 0.5; // Randomly available or not
+      // Simulate API call delay
+      setResult(null);
+      const timer = setTimeout(() => {
+        const available = Math.random() > 0.5; // Random availability
         setResult({
           name: domain,
           available,
           price: available ? "$9.99/year" : null,
         });
       }, 1000);
+
+      return () => clearTimeout(timer);
     }
   }, [domain]);
 
@@ -27,6 +33,7 @@ export default function DomainsPage() {
       <h1 className="text-3xl font-bold text-gray-800 mb-8">Domain Search Results</h1>
 
       <div className="max-w-lg w-full bg-white p-6 rounded-xl shadow">
+        {/* 🔍 Search Form */}
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -50,6 +57,11 @@ export default function DomainsPage() {
           </button>
         </form>
 
+        {/* 🔹 Result Area */}
+        {domain && !result && (
+          <p className="text-gray-500 text-center">Checking availability...</p>
+        )}
+
         {result ? (
           result.available ? (
             <div className="text-center">
@@ -66,10 +78,21 @@ export default function DomainsPage() {
               ❌ {result.name} is already taken.
             </p>
           )
-        ) : (
-          <p className="text-gray-500 text-center">Type a domain name and search.</p>
-        )}
+        ) : !domain ? (
+          <p className="text-gray-500 text-center">
+            Type a domain name and search.
+          </p>
+        ) : null}
       </div>
     </div>
+  );
+}
+
+// 🔹 Main exported component (Suspense দিয়ে wrap করা)
+export default function DomainsPage() {
+  return (
+    <Suspense fallback={<p className="text-center mt-20">Loading...</p>}>
+      <DomainSearchContent />
+    </Suspense>
   );
 }
