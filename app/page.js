@@ -1,4 +1,5 @@
 "use client";
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -6,66 +7,69 @@ export default function Home() {
       <nav className="flex items-center justify-between px-8 py-4 bg-white shadow-md sticky top-0 z-50">
         <h1 className="text-2xl font-bold text-blue-600">MyHost</h1>
         <ul className="flex gap-6 text-gray-700 font-medium">
-          <li><a href="/">Home</a></li>
-          <li><a href="/domains">Domains</a></li>
-          <li><a href="/hosting">Hosting</a></li>
-          <li><a href="/support">Support</a></li>
-          <li><a href="/cart">Cart</a></li>
+          <li><a href="/" className="hover:text-blue-600">Home</a></li>
+          <li><a href="/domains" className="hover:text-blue-600">Domains</a></li>
+          <li><a href="/hosting" className="hover:text-blue-600">Hosting</a></li>
+          <li><a href="/support" className="hover:text-blue-600">Support</a></li>
+          <li><a href="/cart" className="hover:text-blue-600">Cart</a></li>
         </ul>
       </nav>
 
-      {/* 🎯 Hero Section */}
-      <header className="flex flex-col items-center justify-center flex-grow py-24 text-center bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-        <h2 className="text-5xl font-extrabold mb-6">Find the Perfect Domain for Your Business</h2>
-        <p className="mb-8 text-lg max-w-2xl">
-          Search, register, and manage your domains easily with MyHost. Affordable pricing and reliable hosting all in one place.
-        </p>
+      {/* 🎯 Hero Section (Namecheap-style) */}
+      <header className="relative bg-gradient-to-b from-blue-600 to-blue-700 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/wave-pattern.svg')] opacity-20 pointer-events-none"></div>
 
-        {/* 🔍 Domain Search Box */}
+        <div className="container mx-auto text-center py-28 px-4 relative z-10">
+          {/* Main heading */}
+          <h2 className="text-3xl md:text-[3.5rem] font-extrabold mb-6 leading-[1.1] tracking-tight">
+            Make more online, for less
+          </h2>
 
-        {/* 🔍 Domain Search Box (New Working Code) */}
-<form
-  onSubmit={(e) => {
-    e.preventDefault();
-    const input = e.target.elements.domain.value;
-    window.location.href = `/domains?q=${input}`;
-  }}
-  className="flex w-full max-w-2xl bg-white rounded-2xl shadow-md overflow-hidden"
->
-  <input
-    name="domain"
-    type="text"
-    placeholder="Search your domain..."
-    className="flex-grow px-4 py-3 outline-none text-gray-700"
-  />
-  <button
-    type="submit"
-    className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold"
-  >
-    Search
-  </button>
-</form>
+          {/* Subtitle */}
+          <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-10">
+            Search, register, and manage your domains easily with MyHost.  
+            Affordable pricing and reliable hosting all in one place.
+          </p>
 
+          {/* Register / Transfer buttons */}
+          <div className="flex justify-center gap-4 mb-8">
+            <button className="px-6 py-2 bg-white text-blue-700 font-semibold rounded-lg hover:bg-gray-100 transition">
+              Register
+            </button>
+            <button className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition border border-white/40">
+              Transfer
+            </button>
+          </div>
 
-        {/* 🔍 Domain Search Box (Old Code Backup)
-        <div className="flex w-full max-w-2xl bg-white rounded-2xl shadow-md overflow-hidden">
-          
-          <input
-            type="text"
-            placeholder="Search your domain..."
-            className="flex-grow px-4 py-3 outline-none text-gray-700"
-          />
-          <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold">
-            Search
-          </button>
+          {/* Domain Search Box */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const input = e.target.elements.domain.value;
+              window.location.href = `/domains?q=${input}`;
+            }}
+            className="flex max-w-3xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden"
+          >
+            <input
+              name="domain"
+              type="text"
+              placeholder="Register a domain name to start"
+              className="flex-grow px-5 py-4 text-gray-700 outline-none text-lg"
+            />
+            <button
+              type="submit"
+              className="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold"
+            >
+              Search
+            </button>
+          </form>
+
+          {/* Domain Prices */}
+          <div className="mt-6 text-sm text-blue-100 space-x-4">
+            <span>.COM only <strong>$6.49*</strong></span>
+            <span>.ONLINE <strong>$0.98*</strong></span>
+          </div>
         </div>
-
-        */}
-
-
-
-
-        <p className="mt-4 text-sm text-gray-200">.com $9.99 | .net $11.99 | .org $8.99</p>
       </header>
 
       {/* 💻 Hosting Plans */}
@@ -113,28 +117,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 💬 Why Choose Us */}
-      <section className="py-20 px-8 bg-white">
-        <h3 className="text-3xl font-bold text-center mb-12">Why Choose Us?</h3>
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <div className="p-6 rounded-2xl shadow-md bg-gray-50 text-center">
-            <h3 className="text-xl font-bold mb-3">Affordable Domains</h3>
-            <p className="text-gray-600">Get domains starting from just $0.99/year.</p>
-          </div>
-          <div className="p-6 rounded-2xl shadow-md bg-gray-50 text-center">
-            <h3 className="text-xl font-bold mb-3">Fast Hosting</h3>
-            <p className="text-gray-600">Super-fast and reliable hosting for your website.</p>
-          </div>
-          <div className="p-6 rounded-2xl shadow-md bg-gray-50 text-center">
-            <h3 className="text-xl font-bold mb-3">24/7 Support</h3>
-            <p className="text-gray-600">Our support team is available round the clock.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* ⚙️ Footer */}
+      {/* 💬 Footer */}
       <footer className="py-8 text-center bg-gray-900 text-gray-300">
-        <p>© {new Date().getFullYear()} MyHost. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} AI Host. All rights reserved.</p>
       </footer>
     </div>
   );
