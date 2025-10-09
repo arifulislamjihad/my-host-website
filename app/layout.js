@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
 
         {/* 🔹 Footer সব পেজে থাকবে */}
         <footer className="py-8 text-center bg-gray-900 text-gray-300">
-          <p>© {new Date().getFullYear()} MyHost. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} MyHost. Built with ❤️ by Ariful Islam Jihad.</p>
         </footer>
 
         {/* 🔹 Scroll to Top Button */}
