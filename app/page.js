@@ -3,17 +3,7 @@
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* 🌐 Navbar */}
-      <nav className="flex items-center justify-between px-8 py-4 bg-white shadow-md sticky top-0 z-50">
-        <h1 className="text-2xl font-bold text-blue-600">MyHost</h1>
-        <ul className="flex gap-6 text-gray-700 font-medium">
-          <li><a href="/" className="hover:text-blue-600">Home</a></li>
-          <li><a href="/domains" className="hover:text-blue-600">Domains</a></li>
-          <li><a href="/hosting" className="hover:text-blue-600">Hosting</a></li>
-          <li><a href="/support" className="hover:text-blue-600">Support</a></li>
-          <li><a href="/cart" className="hover:text-blue-600">Cart</a></li>
-        </ul>
-      </nav>
+      
 
       {/* 🎯 Hero Section (Namecheap-style) */}
       <header className="relative bg-gradient-to-b from-blue-600 to-blue-700 text-white overflow-hidden">
