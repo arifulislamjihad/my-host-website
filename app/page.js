@@ -1,5 +1,7 @@
 "use client";
 import { Search } from "lucide-react"; // search icon
+import HostingPlans from "./components/HostingPlans";
+
 
 export default function Home() {
   return (
@@ -93,62 +95,14 @@ export default function Home() {
 
 
 
-      {/* 💻 Hosting Plans */}
-      <section className="py-20 px-8 bg-gray-100">
-        <h3 className="text-3xl font-bold text-center mb-12">Our Hosting Plans</h3>
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {/* Basic */}
-          <div className="bg-white p-8 rounded-2xl shadow-md text-center hover:shadow-xl transition">
-            <h4 className="text-xl font-bold mb-2">Basic</h4>
-            <p className="text-gray-600 mb-4">Perfect for small personal websites</p>
-            <p className="text-3xl font-extrabold mb-6">
-              ৳2.99<span className="text-base">/mo</span>
-            </p>
-            <ul className="text-gray-600 mb-6 space-y-2">
-              <li>1 Website</li>
-              <li>10GB SSD Storage</li>
-              <li>Free SSL</li>
-            </ul>
-            <button className="w-full py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700">
-              Get Started
-            </button>
-          </div>
 
-          {/* Pro */}
-          <div className="bg-white p-8 rounded-2xl shadow-md text-center hover:shadow-xl transition border-2 border-blue-600">
-            <h4 className="text-xl font-bold mb-2">Pro</h4>
-            <p className="text-gray-600 mb-4">Ideal for growing businesses</p>
-            <p className="text-3xl font-extrabold mb-6">
-              ৳5.99<span className="text-base">/mo</span>
-            </p>
-            <ul className="text-gray-600 mb-6 space-y-2">
-              <li>5 Websites</li>
-              <li>50GB SSD Storage</li>
-              <li>Free SSL & Email</li>
-            </ul>
-            <button className="w-full py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700">
-              Get Started
-            </button>
-          </div>
+{/* 💻 Hosting Plans */}
+<HostingPlans />
 
-          {/* Enterprise */}
-          <div className="bg-white p-8 rounded-2xl shadow-md text-center hover:shadow-xl transition">
-            <h4 className="text-xl font-bold mb-2">Enterprise</h4>
-            <p className="text-gray-600 mb-4">For high traffic & e-commerce</p>
-            <p className="text-3xl font-extrabold mb-6">
-              ৳9.99<span className="text-base">/mo</span>
-            </p>
-            <ul className="text-gray-600 mb-6 space-y-2">
-              <li>Unlimited Websites</li>
-              <li>200GB SSD Storage</li>
-              <li>Priority Support</li>
-            </ul>
-            <button className="w-full py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700">
-              Get Started
-            </button>
-          </div>
-        </div>
-      </section>
+
+
+
+
 
 
     </div>
