@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar"; // ✅ Navbar import করো
+import ScrollToTopButton from "./components/ScrollToTopButton"; // ✅ ঠিক path
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,20 +20,19 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}>
-        {/* 🌐 Navbar */}
-        <Navbar />
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
+      >
+        {/* 🔹 Main content */}
+        <main className="flex-grow">{children}</main>
 
-        {/* 📄 পেজ কনটেন্ট */}
-        <main>{children}</main>
-
-        {/* 💬 Footer */}
-        <footer className="py-8 text-center bg-gray-900 text-gray-300 mt-12">
-          <p>
-            © {new Date().getFullYear()} MyHost. Built with ❤️ by Ariful Islam
-            Jihad.
-          </p>
+        {/* 🔹 Footer সব পেজে থাকবে */}
+        <footer className="py-8 text-center bg-gray-900 text-gray-300">
+          <p>© {new Date().getFullYear()} MyHost. All rights reserved.</p>
         </footer>
+
+        {/* 🔹 Scroll to Top Button */}
+        <ScrollToTopButton />
       </body>
     </html>
   );
