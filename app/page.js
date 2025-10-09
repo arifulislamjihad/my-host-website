@@ -30,35 +30,57 @@ export default function Home() {
             </button>
           </div>
 
-          {/* 🔍 Domain Search Box (Responsive like Namecheap) */}
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              const input = e.target.elements.domain.value;
-              window.location.href = `/domains?q=${input}`;
-            }}
-            className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 flex items-stretch focus-within:ring-4 focus-within:ring-blue-300 transition-all"
-          >
-            {/* Input Field */}
-            <input
-              name="domain"
-              type="text"
-              placeholder="Register a domain name to start..."
-              className="flex-grow px-5 py-4 text-gray-700 outline-none text-lg"
-            />
 
-            {/* Search Button (Desktop + Mobile friendly) */}
-            <button
-              type="submit"
-              className="px-6 sm:px-8 bg-red-500 hover:bg-red-600 text-white flex items-center justify-center transition-all"
-            >
-              {/* 📱 Mobile = round icon, 💻 Desktop = text */}
-              <span className="sm:hidden">
-                <Search size={22} />
-              </span>
-              <span className="hidden sm:inline text-lg font-semibold">Search</span>
-            </button>
-          </form>
+
+
+{/* 🔍 Domain Search Box (Fixed for Mobile Cut Issue) */}
+<form
+  onSubmit={(e) => {
+    e.preventDefault();
+    const input = e.target.elements.domain.value;
+    window.location.href = `/domains?q=${input}`;
+  }}
+  className="w-full max-w-2xl mx-auto flex items-center bg-white rounded-full shadow-lg overflow-hidden border border-gray-200 focus-within:ring-4 focus-within:ring-blue-300 transition-all"
+>
+  {/* Input Field */}
+  <input
+    name="domain"
+    type="text"
+    placeholder="Register a domain name to start..."
+    className="flex-grow px-5 py-3 text-gray-700 outline-none text-base sm:text-lg rounded-l-full"
+  />
+
+  {/* Search Button */}
+  <button
+    type="submit"
+    className="flex items-center justify-center bg-red-500 hover:bg-red-600 text-white rounded-r-full px-5 sm:px-8 py-3 transition-all"
+  >
+    {/* 📱 Mobile: Icon | 💻 Desktop: Text */}
+    <span className="sm:hidden">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+        className="w-5 h-5"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1116.65 2a7.5 7.5 0 010 14.65z"
+        />
+      </svg>
+    </span>
+    <span className="hidden sm:inline font-semibold text-lg">Search</span>
+  </button>
+</form>
+
+
+
+
+
+
 
           {/* Domain Prices */}
           <div className="mt-6 text-sm text-blue-100 flex flex-wrap justify-center gap-3">
