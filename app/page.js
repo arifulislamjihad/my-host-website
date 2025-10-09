@@ -126,10 +126,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 💬 Footer */}
-      <footer className="py-8 text-center bg-gray-900 text-gray-300">
-        <p>© {new Date().getFullYear()} MyHost. All rights reserved.</p>
-      </footer>
+
     </div>
   );
 }
