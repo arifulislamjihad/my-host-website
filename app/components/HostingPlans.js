@@ -17,13 +17,11 @@ export default function HostingPlans() {
   }, []);
 
   const toggleExpand = (name) => {
-    // ✅ On mobile: only one expand at a time
     if (isMobile) {
       setExpanded((prev) => ({
         [name]: !prev[name],
       }));
     } else {
-      // ✅ On desktop: all expand/collapse together
       const allExpanded = Object.values(expanded).every(Boolean);
       const newState = {};
       plans.forEach((p) => (newState[p.name] = !allExpanded));
@@ -34,19 +32,20 @@ export default function HostingPlans() {
   // Hosting Plans Data
   const plans = [
     {
-      name: "Basic",
-      icon: "💎",
-      description: "Perfect for a simple site or blog",
-      monthly: 1499,
-      yearly: 14999,
+      name: "Student Plan 🎓",
+      icon: "📘",
+      description: "Specially designed for students & beginners on a budget",
+      monthly: 199,
+      yearly: 1999,
+      student: true,
       popular: false,
       features: [
-        "60 GB NVMe Storage",
-        "50 Websites",
-        "4 Core CPU",
-        "4 GB RAM",
-        "60 MB I/O Speed",
-        "120 Number of Process",
+        "1 Website",
+        "10 GB NVMe Storage",
+        "1 Core CPU",
+        "1 GB RAM",
+        "Unlimited Bandwidth",
+        "Free SSL Certificate",
       ],
       more: {
         General: [
@@ -57,18 +56,18 @@ export default function HostingPlans() {
         Server: [
           "LiteSpeed Web Server & Cache",
           "cPanel Access",
-          "High Performance NVMe SSD",
+          "NVMe SSD Hosting",
           "Free SSL Certificates",
         ],
         Security: [
           "24/7 Monitoring by Experts",
-          "Real-Time Malware Scan",
-          "Advanced Firewall Protection",
+          "Basic Malware Scan",
+          "DDoS Protection",
         ],
         Support: [
-          "24/7 WhatsApp Support",
-          "24/7 Ticket Support",
-          "Priority Website Support",
+          "Email Support",
+          "Community Forum Access",
+          "24/7 Chatbot Support",
         ],
       },
     },
@@ -236,11 +235,22 @@ export default function HostingPlans() {
         {plans.map((plan) => (
           <div
             key={plan.name}
-            className={`relative flex flex-col justify-between bg-white border rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-8 ${
-              plan.popular ? "border-blue-600 scale-[1.03]" : "border-gray-200"
-            }`}
+            className={`relative flex flex-col justify-between bg-white border rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-8 
+              ${
+                plan.student
+                  ? "border-green-500 shadow-[0_0_25px_rgba(16,185,129,0.8)] animate-[studentGlow_3s_ease-in-out_infinite] hover:animate-[shimmer_2s_linear_infinite]"
+                  : plan.popular
+                  ? "border-blue-600 scale-[1.03]"
+                  : "border-gray-200"
+              }`}
           >
-            {plan.popular && (
+            {/* Highlight Badges */}
+            {plan.student && (
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-green-600 text-white text-xs font-semibold px-4 py-1 rounded-full shadow-md">
+                Student Offer 🎓
+              </div>
+            )}
+            {plan.popular && !plan.student && (
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs font-semibold px-4 py-1 rounded-full shadow-md">
                 Most Popular
               </div>
@@ -249,14 +259,22 @@ export default function HostingPlans() {
             {/* Header */}
             <div className="flex flex-col items-center text-center mb-6">
               <div className="text-4xl mb-2">{plan.icon}</div>
-              <h4 className="text-xl font-bold text-gray-800 mb-1">
+              <h4
+                className={`text-xl font-bold mb-1 ${
+                  plan.student ? "text-green-700" : "text-gray-800"
+                }`}
+              >
                 {plan.name}
               </h4>
               <p className="text-gray-600 text-sm">{plan.description}</p>
             </div>
 
             {/* Pricing */}
-            <p className="text-3xl font-extrabold text-gray-900 text-center mb-2">
+            <p
+              className={`text-3xl font-extrabold text-center mb-2 ${
+                plan.student ? "text-green-600" : "text-gray-900"
+              }`}
+            >
               ৳
               {billingCycle === "yearly"
                 ? plan.yearly.toLocaleString()
@@ -271,7 +289,9 @@ export default function HostingPlans() {
 
             <button
               className={`w-full py-3 rounded-lg font-semibold transition-all duration-200 ${
-                plan.popular
+                plan.student
+                  ? "bg-green-600 text-white hover:bg-green-700"
+                  : plan.popular
                   ? "bg-blue-600 text-white hover:bg-blue-700"
                   : "border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
               }`}
@@ -331,7 +351,11 @@ export default function HostingPlans() {
             {/* Toggle Button */}
             <button
               onClick={() => toggleExpand(plan.name)}
-              className="mt-8 w-full flex justify-center items-center gap-1 text-blue-600 font-medium text-sm border border-blue-200 rounded-lg py-2 hover:bg-blue-50 transition"
+              className={`mt-8 w-full flex justify-center items-center gap-1 font-medium text-sm border rounded-lg py-2 hover:bg-opacity-10 transition ${
+                plan.student
+                  ? "text-green-600 border-green-300 hover:bg-green-50"
+                  : "text-blue-600 border-blue-200 hover:bg-blue-50"
+              }`}
             >
               {expanded[plan.name] ? (
                 <>
